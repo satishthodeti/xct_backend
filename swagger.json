@@ -1,0 +1,377 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "xct API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "localhost"
+    }
+  ],
+  "paths": {
+    "/user/signup": {
+      "post": {
+        "tags": ["UsersNew"],
+        "description": "Create a new user in the system",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Signup"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "New user is created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/login": {
+      "post": {
+        "tags": ["UsersNew"],
+        "description": "User login",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User logged in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/logout": {
+      "post": {
+        "tags": ["UsersNew"],
+        "description": "User logout",
+        "responses": {
+          "200": {
+            "description": "User logout in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/forgetPassword": {
+      "post": {
+        "tags": ["UsersNew"],
+        "description": "User forgetPassword",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/login"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated Password in successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/allUsers": {
+      "get": {
+        "tags": ["UsersNew"],
+        "description": "get All Users in the system",
+        "responses": {
+          "201": {
+            "description": "get All Users retrived",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{id}": {
+      "get": {
+        "tags": ["UsersNew"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "get user By Id",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "description": "get All Users in the system",
+        "responses": {
+          "201": {
+            "description": "get All Users retrived",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/update": {
+      "put": {
+        "tags": ["UsersNew"],
+        "description": "User Update",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateUser"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "User updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/delete/{id}": {
+      "delete": {
+        "tags": ["UsersNew"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "delete user By Id",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "description": "delete Users in the system",
+        "responses": {
+          "201": {
+            "description": "delete Users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wishlist/insertItem": {
+      "post": {
+        "tags": ["Wishlist"],
+        "description": "Create a new wishlist item",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateWishlistItem"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Wishlist item created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wishlist/list": {
+      "get": {
+        "tags": ["Wishlist"],
+        "description": "Get user's wishlist",
+        "responses": {
+          "200": {
+            "description": "Wishlist items retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wishlist/delete/{wishlistId}": {
+      "delete": {
+        "tags": ["Wishlist"],
+        "parameters": [
+          {
+            "name": "wishlistId",
+            "in": "path",
+            "description": "Wishlist item ID",
+            "schema": {
+              "$ref": "#/components/schemas/id"
+            }
+          }
+        ],
+        "description": "Delete wishlist item",
+        "responses": {
+          "201": {
+            "description": "Wishlist item deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Signup": {
+        "required": ["userName", "userEmail", "userPassword"],
+        "properties": {
+          "userName": {
+            "type": "string",
+            "default": "Satish"
+          },
+          "userEmail": {
+            "type": "string",
+            "default": "satish@gmail.com"
+          },
+          "userPassword": {
+            "type": "string",
+            "default": "satish@2024"
+          }
+        }
+      },
+      "login": {
+        "required": ["userEmail", "userPassword"],
+        "properties": {
+          "userEmail": {
+            "type": "string",
+            "default": "satish@gmail.com"
+          },
+          "userPassword": {
+            "type": "string",
+            "default": "satish@2024"
+          }
+        }
+      },
+      "updateUser": {
+        "required": ["userId", "userName", "userEmail"],
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "default": 1
+          },
+          "userName": {
+            "type": "string",
+            "default": "Satish"
+          },
+          "userEmail": {
+            "type": "string",
+            "default": "satish@gmail.com"
+          }
+        }
+      },
+      "id": {
+        "required": ["id"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "default": 1
+          }
+        }
+      },
+      "CreateWishlistItem": {
+        "required": ["productName", "price", "description"],
+        "properties": {
+          "productName": {
+            "type": "string",
+            "default": "Dell Laptop"
+          },
+          "price": {
+            "type": "string",
+            "default": "70000"
+          },
+          "description": {
+            "type": "string",
+            "default": "i5 10th generation"
+          }
+        }
+      },
+      "Response": {
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
